@@ -1,0 +1,35 @@
+    <div class="table-responsive">
+        <table class="table table-condensed table-bordered table-striped">
+            <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>タイトル</th>
+                    <th>期限</th>
+                    <th>編集</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="todo in listCtrl.todosService.getTodos() | orderBy:'+deadline'| filter:listCtrl.filterService.getCurrentFilter()  track by todo.id">
+                    <td>
+                        <input type="checkbox" ng-model="todo.complated">
+                    </td>
+                    <!-- タイトル -->
+                    <td ng-class="{complated:todo.complated}">
+                        {{todo.title}}
+                    </td>
+                    <!-- 期限 -->
+                    <td ng-class="{complated:todo.complated}">
+                        {{todo.deadline | date: 'yyyy/MM/dd'}}
+                    </td>
+                    <td>
+                        <!-- 編集ボタン -->
+                        <td-modal item="todo"></td-modal>
+                        <!-- 削除ボタン -->
+                        <button type="reset" class="btn btn-danger" ng-click="listCtrl.removeTodo(todo)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

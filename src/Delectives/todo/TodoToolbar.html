@@ -1,0 +1,28 @@
+<div class="btn-toolbarCtrl">
+    <div class="btn-group">
+        <button class="btn btn-success" ng-click="toolbarCtrl.checkAll()">全て完了/未了</button>
+    </div>
+    <div class="btn-group">
+        <button ng-class="{active : !toolbarCtrl.getCurrentFilter()}"
+            ng-click="toolbarCtrl.changeFilter()"
+            class="btn btn-default">
+            全部
+            <span class="badge">{{toolbarCtrl.allCount}}</span>
+        </button>
+        <button ng-class="{active : toolbarCtrl.getCurrentFilter() == toolbarCtrl.getRemaining()}"
+            ng-click="toolbarCtrl.changeFilter(toolbarCtrl.getRemaining())"
+            class="btn btn-default">
+            未了
+            <span class="badge">{{toolbarCtrl.remainingCount}}</span>
+        </button>
+        <button ng-class="{active : toolbarCtrl.getCurrentFilter() == toolbarCtrl.getDone()}"
+            ng-click="toolbarCtrl.changeFilter(toolbarCtrl.getDone())"
+            class="btn btn-default">
+            完了
+            <span class="badge">{{toolbarCtrl.doneCount}}</span>
+        </button>
+    </div>
+    <div class="btn-group" ng-click="toolbarCtrl.removeDoneTodo()">
+        <button class="btn btn-danger">完了アイテムを全て削除</button>
+    </div>
+</div>
